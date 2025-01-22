@@ -4,14 +4,23 @@ LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
 
 # Update SRC_URI to point to the GitHub repository
-SRC_URI = "gitsm://github.com/texasinstruments/ti-lvgl-demo.git;branch=master;protocol=https \
-           file://ti-lvgl-demo.service \
-          "
-S = "${WORKDIR}/git/lv_port_linux"
+SRC_URI ="gitsm://github.com/TexasInstruments/lv_port_linux.git;branch=master;protocol=https \
+          file://ti-lvgl-demo.service \
+         "
+#S = "${WORKDIR}/git/lv_port_linux"
+S = "${WORKDIR}/git"
 
-SRCREV = "c57d040529b7f085346ca266c3172dddfda61871"
+# SRCREV = "8d4fa43cd59b513d3d77e8e7523b5c5efdb5d8ac"
+SRCREV = "6e3b8780f417400c689e146919682da0852afbb2"
+#SRCREV_lvgl = "a6b62a10bc4472803ab2a24d39db15ad8f824847"
 
 SYSTEMD_SERVICE:${PN} = "${PN}.service"
+PV = "0.2"
+
+DEPENDS += "alsa-lib"
+RDEPENDS:${PN} = "alsa-lib"
+DEPENDS += "mosquitto"
+RDEPENDS:${PN} = "mosquitto"
 
 inherit cmake
 EXTRA_OECMAKE += " \
