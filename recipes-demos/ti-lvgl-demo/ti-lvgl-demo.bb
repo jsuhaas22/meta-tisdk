@@ -28,6 +28,15 @@ EXTRA_OECMAKE += " \
       -DCMAKE_BUILD_TYPE=Release \
 "
 
+do_configure() {
+    cmake -B ${S}/build-arm64 -S ${S} \
+        ${EXTRA_OECMAKE}
+}
+
+do_compile() {
+    make -C ${S}/build-arm64
+}
+
 do_install() {
     CP_ARGS="-Prf --preserve=mode,timestamps --no-preserve=ownership"
     install -d ${D}${bindir}
