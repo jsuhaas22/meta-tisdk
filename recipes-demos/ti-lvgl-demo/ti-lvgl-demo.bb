@@ -42,10 +42,11 @@ do_install() {
     install -d ${D}${bindir}
     install -d ${D}${datadir}/ti-lvgl-demo/assets
     install -d ${D}${datadir}/ti-lvgl-demo/slides
+    install -d ${D}${datadir}/ti-lvgl-demo/cert
     install -m 0755 ${S}/bin/lvglsim ${D}${bindir}
     cp ${CP_ARGS} ${S}/lvgl/demos/high_res/assets/* ${D}${datadir}/ti-lvgl-demo/assets
     cp ${CP_ARGS} ${S}/lvgl/demos/high_res/slides/* ${D}${datadir}/ti-lvgl-demo/slides
-    install -m 0755 ${S}/certs/AmazonRootCA1.pem ${D}${datadir}/ti-lvgl-demo
+    install -m 0755 ${S}/certs/AmazonRootCA1.pem ${D}${datadir}/ti-lvgl-demo/cert/
 
     install -d ${D}${systemd_system_unitdir}
     install -m 0755 ${WORKDIR}/ti-lvgl-demo.service ${D}${systemd_system_unitdir}/ti-lvgl-demo.service
@@ -56,5 +57,5 @@ FILES:${PN} += " \
     ${datadir}/ti-lvgl-demo/assets \
     ${datadir}/ti-lvgl-demo/slides \
     ${systemd_system_unitdir}/ti-lvgl-demo.service \
-    ${datadir}/ti-lvgl-demo/AamzonRootCA1.pem \
+    ${datadir}/ti-lvgl-demo/cert/AmazonRootCA1.pem \
 "
