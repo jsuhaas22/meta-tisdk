@@ -13,38 +13,45 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=5c3a7f5f6886ba6f33ec3d214dc7ab4c"
 DEPENDS = "\
     qtbase \
     qtbase-native \
+    packagegroup-qt6-addons \
+    packagegroup-qt6-modules \
+    packagegroup-qt6-essentials \
+    qttools \
+    nativesdk-packagegroup-qt6-toolchain-host \
+    qt3d \
     qtquick3d \
     qtdeclarative \
-    qtgraphicaleffects \
     qtmultimedia \
-    qtxmlpatterns \
-    qmltermwidget \
+    qt5compat \
 "
 
 RDEPENDS:${PN} = "\
     qtquick3d \
     qtmultimedia \
+    packagegroup-qt6-addons \
+    packagegroup-qt6-modules \
+    packagegroup-qt6-essentials \
+    qttools \
+    qt3d \
     bash \
     seva-launcher \
     pulseaudio-service \
     qtdeclarative-qmlplugins \
-    qtgraphicaleffects-qmlplugins \
-    qmltermwidget \
-    qtquickcontrols-qmlplugins \
-    qtquickcontrols2-qmlplugins \
     qtwayland-qmlplugins \
     qtdeclarative-tools \
+    qt5compat \
+    qtquick3d \
 "
 
 RDEPENDS:${PN}:remove:am62xxsip-evm = "seva-launcher"
 RDEPENDS:${PN}:append:am62xx = " powervr-graphics"
 RDEPENDS:${PN}:append:am62pxx = " powervr-graphics"
 
-BRANCH = "master"
-SRCREV = "ddc40c071bf7d8c11373f69546c67ed46157df66"
+BRANCH = "qt6-initial"
+SRCREV = "94ffce9cf9f5d77dd5c1c4a0b4851078e8c74ccf"
 
 SRC_URI = " \
-    git://github.com/TexasInstruments/ti-apps-launcher.git;protocol=https;branch=${BRANCH} \
+    git://github.com/glneo/ti-apps-launcher.git;protocol=https;branch=${BRANCH} \
     file://ti-apps-launcher.service \
     file://ti-apps-launcher-eglfs.service \
     file://ti-apps-launcher-analytics.service \
@@ -87,7 +94,7 @@ SYSTEMD_SERVICE:${PN} = "${APP_NAME}.service"
 OECMAKE_CXX_FLAGS += "-D${APPS_DEFINES}=1"
 OECMAKE_CXX_FLAGS += "-DRT_BUILD=${RT_BUILD_VALUE}"
 
-EXTRA_OECMAKE = "-DOE_QMAKE_PATH_EXTERNAL_HOST_BINS=${STAGING_BINDIR_NATIVE}"
+EXTRA_OECMAKE = "-DOE_QMAKE_PATH_EXTERNAL_HOST_BINS=${STAGING_BINDIR_NATIVE} -DQT_REQUIRE_HOST_PATH_CHECK=OFF"
 
 do_install:append() {
     if [ "${DISPLAY_CLUSTER_ENABLE}" != "1" ]; then
