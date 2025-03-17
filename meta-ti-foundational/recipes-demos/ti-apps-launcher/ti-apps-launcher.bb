@@ -22,6 +22,7 @@ DEPENDS = "\
     qtquick3d \
     qtdeclarative \
     qtmultimedia \
+    qtshadertools \
     qt5compat \
 "
 
@@ -47,11 +48,11 @@ RDEPENDS:${PN}:remove:am62xxsip-evm = "seva-launcher"
 RDEPENDS:${PN}:append:am62xx = " powervr-graphics"
 RDEPENDS:${PN}:append:am62pxx = " powervr-graphics"
 
-BRANCH = "qt6-initial"
+BRANCH = "implement-thermo"
 SRCREV = "94ffce9cf9f5d77dd5c1c4a0b4851078e8c74ccf"
 
 SRC_URI = " \
-    git://github.com/glneo/ti-apps-launcher.git;protocol=https;branch=${BRANCH} \
+    git://github.com/jsuhaas22/ti-apps-launcher.git;protocol=https;branch=${BRANCH} \
     file://ti-apps-launcher.service \
     file://ti-apps-launcher-eglfs.service \
     file://ti-apps-launcher-analytics.service \
@@ -94,7 +95,7 @@ SYSTEMD_SERVICE:${PN} = "${APP_NAME}.service"
 OECMAKE_CXX_FLAGS += "-D${APPS_DEFINES}=1"
 OECMAKE_CXX_FLAGS += "-DRT_BUILD=${RT_BUILD_VALUE}"
 
-EXTRA_OECMAKE = "-DOE_QMAKE_PATH_EXTERNAL_HOST_BINS=${STAGING_BINDIR_NATIVE} -DQT_REQUIRE_HOST_PATH_CHECK=OFF"
+EXTRA_OECMAKE = "-DOE_QMAKE_PATH_EXTERNAL_HOST_BINS=${STAGING_BINDIR_NATIVE} -DQT_REQUIRE_HOST_PATH_CHECK=OFF -DQT_DEBUG_FIND_PACKAGE=ON "
 
 do_install:append() {
     if [ "${DISPLAY_CLUSTER_ENABLE}" != "1" ]; then
