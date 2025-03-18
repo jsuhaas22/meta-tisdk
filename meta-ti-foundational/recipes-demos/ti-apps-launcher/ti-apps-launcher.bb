@@ -21,6 +21,7 @@ DEPENDS = "\
     qt3d \
     qtquick3d \
     qtdeclarative \
+    qtdeclarative-native \
     qtmultimedia \
     qtshadertools \
     qt5compat \
@@ -86,7 +87,7 @@ HW_CODEC:j722s = "1"
 APP_NAME = "${@oe.utils.conditional("DISPLAY_CLUSTER_ENABLE", "1", "ti-demo", "ti-apps-launcher", d)}"
 RT_BUILD_VALUE = "${@oe.utils.conditional("ARAGO_RT_ENABLE", "1", "1", "0", d)}"
 
-inherit systemd cmake
+inherit systemd qt6-cmake
 
 SYSTEMD_PACKAGES = "${PN}"
 
