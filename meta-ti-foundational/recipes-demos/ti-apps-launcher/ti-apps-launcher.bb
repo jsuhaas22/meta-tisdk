@@ -50,7 +50,7 @@ RDEPENDS:${PN}:append:am62xx = " powervr-graphics"
 RDEPENDS:${PN}:append:am62pxx = " powervr-graphics"
 
 BRANCH = "implement-thermo"
-SRCREV = "94ffce9cf9f5d77dd5c1c4a0b4851078e8c74ccf"
+SRCREV = "960def52f60e616bc5bd4033eed6ee741532aa03"
 
 SRC_URI = " \
     git://github.com/jsuhaas22/ti-apps-launcher.git;protocol=https;branch=${BRANCH} \
