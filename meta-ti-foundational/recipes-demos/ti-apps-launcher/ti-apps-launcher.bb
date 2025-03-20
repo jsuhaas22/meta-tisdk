@@ -28,6 +28,7 @@ DEPENDS = "\
 "
 
 RDEPENDS:${PN} = "\
+    cmake \
     qtquick3d \
     qtmultimedia \
     packagegroup-qt6-addons \
