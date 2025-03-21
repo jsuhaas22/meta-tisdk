@@ -13,17 +13,34 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=5c3a7f5f6886ba6f33ec3d214dc7ab4c"
 DEPENDS = "\
     qtbase \
     qtbase-native \
+    packagegroup-qt6-addons \
+    packagegroup-qt6-modules \
+    packagegroup-qt6-essentials \
+    qttools \
+    nativesdk-packagegroup-qt6-toolchain-host \
+    qt3d \
     qtquick3d \
     qtdeclarative \
     qtgraphicaleffects \
     qtmultimedia \
     qtxmlpatterns \
     qmltermwidget \
+    gstreamer1.0 \
+    qtdeclarative-native \
+    qtshadertools \
+    qt5compat \
+    qtwayland \
 "
 
 RDEPENDS:${PN} = "\
+    cmake \
     qtquick3d \
     qtmultimedia \
+    packagegroup-qt6-addons \
+    packagegroup-qt6-modules \
+    packagegroup-qt6-essentials \
+    qttools \
+    qt3d \
     bash \
     seva-launcher \
     pulseaudio-service \
@@ -34,17 +51,22 @@ RDEPENDS:${PN} = "\
     qtquickcontrols2-qmlplugins \
     qtwayland-qmlplugins \
     qtdeclarative-tools \
+    gstreamer1.0-plugins-good \
+    gstreamer1.0-plugins-good-qml6 \
+    qt5compat \
+    qtquick3d \
+    qtwayland \
 "
 
 RDEPENDS:${PN}:remove:am62xxsip-evm = "seva-launcher"
 RDEPENDS:${PN}:append:am62xx = " powervr-graphics"
 RDEPENDS:${PN}:append:am62pxx = " powervr-graphics"
 
-BRANCH = "master"
-SRCREV = "ddc40c071bf7d8c11373f69546c67ed46157df66"
+BRANCH = "migrate-to-qt6"
+SRCREV = "b83a5a68d222d9071cba7fa0b358b3e644b051a6"
 
 SRC_URI = " \
-    git://github.com/TexasInstruments/ti-apps-launcher.git;protocol=https;branch=${BRANCH} \
+    git://github.com/jsuhaas22/ti-apps-launcher.git;protocol=https;branch=${BRANCH} \
     file://ti-apps-launcher.service \
     file://ti-apps-launcher-eglfs.service \
     file://ti-apps-launcher-analytics.service \
@@ -78,7 +100,8 @@ HW_CODEC:j722s = "1"
 APP_NAME = "${@oe.utils.conditional("DISPLAY_CLUSTER_ENABLE", "1", "ti-demo", "ti-apps-launcher", d)}"
 RT_BUILD_VALUE = "${@oe.utils.conditional("ARAGO_RT_ENABLE", "1", "1", "0", d)}"
 
-inherit systemd cmake
+inherit systemd pkgconfig cmake
+#inherit systemd qt6-cmake pkgconfig
 
 SYSTEMD_PACKAGES = "${PN}"
 
