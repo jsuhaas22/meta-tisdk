@@ -17,6 +17,18 @@ IMAGE_INSTALL:append = " \
     packagegroup-arago-tisdk-sourceipks-sdk-host \
 "
 
+IMAGE_INSTALL:append = " \
+    nativesdk-packagegroup-qt6-toolchain-host \
+"
+
+IMAGE_INSTALL:append = " \
+    nativesdk-packagegroup-qt6-toolchain-host-essentials \
+"
+
+IMAGE_INSTALL:append = " \
+    nativesdk-packagegroup-qt6-toolchain-host-addons \
+"
+
 # Set DTB filters for each machine.  Use "unknown" by default to avoid
 # picking up DTB files for devices with no DTB support.
 DTB_FILTER:j721e = "j721e\|fpdlink"
