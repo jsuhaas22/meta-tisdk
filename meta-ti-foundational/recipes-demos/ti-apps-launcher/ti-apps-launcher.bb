@@ -13,17 +13,26 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=5c3a7f5f6886ba6f33ec3d214dc7ab4c"
 DEPENDS = "\
     qtbase \
     qtbase-native \
+    qttools \
+    qt3d \
     qtquick3d \
     qtquick3d-native \
     qtdeclarative \
     qtmultimedia \
     qmltermwidget \
     gstreamer1.0 \
+    qtdeclarative-native \
+    qtshadertools \
+    qt5compat \
+    qtwayland \
 "
 
 RDEPENDS:${PN} = "\
+    cmake \
     qtquick3d \
     qtmultimedia \
+    qttools \
+    qt3d \
     bash \
     pulseaudio-service \
     qtdeclarative-qmlplugins \
@@ -32,17 +41,20 @@ RDEPENDS:${PN} = "\
     qtdeclarative-tools \
     gstreamer1.0-plugins-good \
     gstreamer1.0-plugins-good-qml6 \
+    qt5compat \
+    qtquick3d \
+    qtwayland \
 "
 
 RDEPENDS:${PN}:remove:am62xxsip-evm = "seva-launcher"
 RDEPENDS:${PN}:append:am62xx = " powervr-graphics"
 RDEPENDS:${PN}:append:am62pxx = " powervr-graphics"
 
-BRANCH = "master"
-SRCREV = "1237f03767857df2190991edf5655f60f9537a54"
+BRANCH = "migrate-to-qt6"
+SRCREV = "4d64fdc25e7f2ec95e9c8796b54161c978836e8e"
 
 SRC_URI = " \
-    git://github.com/TexasInstruments/ti-apps-launcher.git;protocol=https;branch=${BRANCH} \
+    git://github.com/jsuhaas22/ti-apps-launcher.git;protocol=https;branch=${BRANCH} \
     file://ti-apps-launcher.service \
     file://ti-apps-launcher-eglfs.service \
     file://ti-apps-launcher-analytics.service \
@@ -63,8 +75,6 @@ APPS_DEFINES:j784s4 = "SOC_J784S4"
 APPS_DEFINES:j722s = "SOC_J722S"
 
 SERVICE_SUFFIX = ""
-SERVICE_SUFFIX:am62xx = "-analytics"
-SERVICE_SUFFIX:am62pxx = "-analytics"
 SERVICE_SUFFIX:am62xxsip-evm = "-eglfs"
 
 HW_CODEC = "0"
@@ -77,6 +87,7 @@ APP_NAME = "${@oe.utils.conditional("DISPLAY_CLUSTER_ENABLE", "1", "ti-demo", "t
 RT_BUILD_VALUE = "${@oe.utils.conditional("ARAGO_RT_ENABLE", "1", "1", "0", d)}"
 
 inherit systemd pkgconfig cmake
+#inherit systemd qt6-cmake pkgconfig
 
 SYSTEMD_PACKAGES = "${PN}"
 
@@ -103,6 +114,7 @@ do_install:append() {
     else
         install -d ${D}/opt/ti-demo
         install -m 0755 ${S}/apps/auto_cluster.qml ${D}/opt/ti-demo/
+        install -m 0755 ${S}/apps/CircularGauge.qml ${D}/opt/ti-demo/
 
         install -d ${D}${systemd_system_unitdir}
         install -m 0755 ${WORKDIR}/ti-demo.service ${D}${systemd_system_unitdir}/ti-demo.service
