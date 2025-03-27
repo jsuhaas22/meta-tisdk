@@ -15,6 +15,7 @@ Environment=XDG_RUNTIME_DIR=/run/user/1000
 Environment=QT_QPA_PLATFORM=wayland
 Environment=WAYLAND_DISPLAY=wayland-1
 EnvironmentFile=/etc/environment
+ExecStartPre=/bin/sh -c 'for i in $(seq 1 60); do [ -S /run/user/1000/wayland-1 ] && exit 0 || sleep 1; done; exit 1'
 ExecStart=/bin/sh -c '/usr/bin/ti-apps-launcher'
 
 # The user to run Weston as.
