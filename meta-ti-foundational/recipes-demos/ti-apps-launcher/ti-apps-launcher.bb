@@ -54,8 +54,8 @@ RDEPENDS:${PN}:remove:am62xxsip-evm = "seva-launcher"
 RDEPENDS:${PN}:append:am62xx = " powervr-graphics"
 RDEPENDS:${PN}:append:am62pxx = " powervr-graphics"
 
-BRANCH = "migrate-to-qt6"
-SRCREV = "cfc0c9030ba89ea31993fa37c7612777b100d36b"
+BRANCH = "analytics-migrate-to-qt6"
+SRCREV = "e727fc56346b6493c286ce2ed9969d946ad71cc3"
 
 SRC_URI = " \
     git://github.com/jsuhaas22/ti-apps-launcher.git;protocol=https;branch=${BRANCH} \
