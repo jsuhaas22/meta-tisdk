@@ -13,8 +13,6 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=5c3a7f5f6886ba6f33ec3d214dc7ab4c"
 DEPENDS = "\
     qtbase \
     qtbase-native \
-    packagegroup-qt6-modules \
-    packagegroup-qt6-essentials \
     qttools \
     qt3d \
     qtquick3d \
@@ -33,8 +31,6 @@ RDEPENDS:${PN} = "\
     cmake \
     qtquick3d \
     qtmultimedia \
-    packagegroup-qt6-modules \
-    packagegroup-qt6-essentials \
     qttools \
     qt3d \
     bash \
