@@ -53,11 +53,11 @@ RDEPENDS:${PN}:remove:am62xxsip-evm = "seva-launcher"
 RDEPENDS:${PN}:append:am62xx = " powervr-graphics"
 RDEPENDS:${PN}:append:am62pxx = " powervr-graphics"
 
-BRANCH = "master"
-SRCREV = "661fb636e92d42fb3a3ac98a042b899505e06299"
+BRANCH = "dev-mem-null"
+SRCREV = "3b0081dbbae3c3f589e452d0e6c8b4dd5a18e4fc"
 
 SRC_URI = " \
-    git://github.com/TexasInstruments/ti-apps-launcher.git;protocol=https;branch=${BRANCH} \
+    git://github.com/glneo/ti-apps-launcher.git;protocol=https;branch=${BRANCH} \
     file://ti-apps-launcher.service \
     file://ti-apps-launcher-eglfs.service \
     file://ti-demo.service \
