@@ -24,6 +24,7 @@ DEPENDS = "\
     qtshadertools \
     qt5compat \
     qtwayland \
+    qmltermwidget \
 "
 
 RDEPENDS:${PN} = "\
@@ -48,6 +49,7 @@ RDEPENDS:${PN} = "\
     onnxruntime \
     nnstreamer \
     analytics-demo-data \
+    qmltermwidget \
 "
 
 RDEPENDS:${PN}:remove:j721s2 = "tensorflow-lite onnx onnxruntime nnstreamer analytics-demo-data"
