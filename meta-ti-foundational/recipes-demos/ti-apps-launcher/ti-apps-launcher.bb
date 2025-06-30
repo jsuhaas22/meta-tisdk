@@ -57,8 +57,8 @@ RDEPENDS:${PN}:remove:am62xxsip-evm = "seva-launcher"
 RDEPENDS:${PN}:append:am62xx = " powervr-graphics"
 RDEPENDS:${PN}:append:am62pxx = " powervr-graphics"
 
-BRANCH = "am62p-camera-qt6"
-SRCREV = "3fb6aa8e35e5597cf04f7fa7b235fdae12ef214d"
+BRANCH = "sip-apps-launcher"
+SRCREV = "3c953cfc7b87da34a15c49a3e94e7d40d2a4e0da"
 
 SRC_URI = " \
     git://github.com/jsuhaas22/ti-apps-launcher.git;protocol=https;branch=${BRANCH} \
